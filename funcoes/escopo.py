@@ -1,9 +1,10 @@
 def gerar_acumulador():
-    acumulador = {'v': 0}
+    acumulador = 0
 
     def acumular(i):
-        acumulador['v'] += i
-        return acumulador['v']
+        nonlocal acumulador
+        acumulador += i
+        return acumulador
 
     return acumular
 
