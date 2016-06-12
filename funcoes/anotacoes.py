@@ -14,3 +14,7 @@ def truncar(texto:str, largura:'int > 0'=80) -> str:
         return texto.rstrip()
     else:
         return texto[:termino].rstrip()
+
+
+print(truncar('dfsdfsd s df sdf sdf sdfsdf'))
+print(truncar(1))
