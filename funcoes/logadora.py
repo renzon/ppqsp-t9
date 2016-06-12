@@ -6,11 +6,9 @@ def tempo_atual(func):
     return func
 
 
+@tempo_atual
 def ola_mundo():
     return 'Olá Mundo'
-
-
-ola_mundo = tempo_atual(ola_mundo)
 
 
 def hello_world():
