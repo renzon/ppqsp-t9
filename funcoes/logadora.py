@@ -1,11 +1,14 @@
-from time import strftime
+from time import strftime, time
 
 
 def tempo_atual(func):
     def logadora():
         print('Função {} Tempo: {}'.format(func.__name__, strftime('%H:%M:%S.%s')))
+        inicio = time()
         resultado = func()
+        print('Executou em %s' % (time() - inicio))
         return resultado
+
     return logadora
 
 
