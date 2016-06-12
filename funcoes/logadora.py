@@ -2,8 +2,11 @@ from time import strftime
 
 
 def tempo_atual(func):
-    print(strftime('%H:%M:%S'))
-    return func
+    def logadora():
+        print('Função {} Tempo: {}'.format(func.__name__, strftime('%H:%M:%S.%s')))
+        resultado = func()
+        return resultado
+    return logadora
 
 
 @tempo_atual
@@ -11,11 +14,13 @@ def ola_mundo():
     return 'Olá Mundo'
 
 
+@tempo_atual
 def hello_world():
     return 'Hello World'
 
 
-hello_world = tempo_atual(hello_world)
-
 print(ola_mundo())
 print(hello_world())
+print(ola_mundo())
+print(ola_mundo)
+print(hello_world)
