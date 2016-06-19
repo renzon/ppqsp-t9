@@ -22,15 +22,15 @@ GERENTE = 'GERENTE'
 _grupos = {ADMIN: {'renzo', 'arthur'}, GERENTE: {'rogerio'}}
 
 
-def permitir(grupo):
-    usuarios_do_grupo = _grupos[grupo]
-    def decorador(func):
+class permitir:
+    def __init__(self, grupo):
+        self.usuarios_do_grupo = _grupos[grupo]
+
+    def __call__(self, func):
         @functools.wraps(func)
         def nova_funcao(usuario, *args, **kwargs):
-            if usuario in usuarios_do_grupo:
+            if usuario in self.usuarios_do_grupo:
                 return func(usuario, *args, **kwargs)
             print('Desculpe, acesso negado')
 
         return nova_funcao
-
-    return decorador
