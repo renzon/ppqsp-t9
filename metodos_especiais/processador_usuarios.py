@@ -1,4 +1,7 @@
-class Processador():
+from abc import ABC, abstractmethod
+
+
+class Processador(ABC):
     def processar(self):
         """
         Processa fonte de usuarios.
@@ -11,19 +14,19 @@ class Processador():
         for usuario in self.usuarios():
             print(usuario)
 
+    @abstractmethod
     def obter_nome_da_fonte(self):
         """
         Deve retornar o nome da fonte
         :return: str
         """
-        raise NotImplementedError()
 
+    @abstractmethod
     def usuarios(self):
         """
         Deve retornar iteravel com usuarios
-        :return:
+        :return: iterable
         """
-        raise NotImplementedError()
 
 
 class ProcessadorFalso(Processador):
