@@ -1,5 +1,11 @@
 class Processador():
     def processar(self):
+        """
+        Processa fonte de usuarios.
+        Devem ser implementados métodos obter_nome_da_fonte e
+        usuarios
+        :return: None
+        """
         nome_da_fonte = self.obter_nome_da_fonte()
         print(nome_da_fonte)
         for usuario in self.usuarios():
