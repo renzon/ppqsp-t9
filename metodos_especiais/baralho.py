@@ -1,10 +1,11 @@
-from collections import namedtuple, Sequence
+from collections import namedtuple, MutableSequence
 from itertools import product
+from random import shuffle
 
 Carta = namedtuple('Carta', 'naipe valor')
 
 
-class Baralho(Sequence):
+class Baralho(MutableSequence):
     def __init__(self):
         naipes = '♣♡♠♢'
         valores = ''.join(map(str, range(2, 11)))
@@ -19,6 +20,15 @@ class Baralho(Sequence):
 
     def __len__(self):
         return len(self._cartas)
+
+    def __setitem__(self, key, value):
+        self._cartas[key] = value
+
+    def __delitem__(self, index):
+        del self._cartas
+
+    def insert(self, index, value):
+        self._cartas.insert(index, value)
 
 
 baralho = Baralho()
@@ -37,3 +47,5 @@ print(as_de_paus in baralho)
 print(baralho.count(as_de_paus))
 print(baralho.index(as_de_paus))
 print(list(reversed(baralho)))
+shuffle(baralho)
+print(baralho)
