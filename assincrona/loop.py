@@ -1,4 +1,5 @@
 from datetime import timedelta, datetime
+from random import randint
 from time import strftime
 
 _tarefas = []
@@ -46,7 +47,12 @@ def executar_depois(chamavel, intervalo):
     _tarefas.append(_TarefaIntervalo(chamavel, intervalo))
 
 
-def inicar_loop_de_eventos():
+def executar_aleatoriamente(chamavel):
+    intervalo = randint(1, 10)
+    executar_depois(chamavel, intervalo)
+
+
+def inicar_loop_de_eventos_sincrono():
     global _tarefas
     while _tarefas:
         for tarefa in _tarefas:
@@ -66,5 +72,6 @@ if __name__ == '__main__':
 
     executar_depois(executar_em_intervalo, 5)
     executar_depois(executar_em_intervalo, 2)
+    executar_aleatoriamente(executar_em_intervalo)
 
-    inicar_loop_de_eventos()
+    inicar_loop_de_eventos_sincrono()
