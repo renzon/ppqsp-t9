@@ -1,5 +1,6 @@
 from datetime import timedelta, datetime
 from random import randint
+from threading import Thread
 from time import strftime
 
 _tarefas = []
@@ -44,12 +45,14 @@ def executar_depois(chamavel, intervalo):
     :param intervalo: Intervalo de chamada em segundos
     :return: Tarefa
     """
-    _tarefas.append(_TarefaIntervalo(chamavel, intervalo))
+    t = _TarefaIntervalo(chamavel, intervalo)
+    _tarefas.append(t)
+    return t
 
 
 def executar_aleatoriamente(chamavel):
     intervalo = randint(1, 10)
-    executar_depois(chamavel, intervalo)
+    return executar_depois(chamavel, intervalo)
 
 
 def inicar_loop_de_eventos_sincrono():
@@ -58,6 +61,10 @@ def inicar_loop_de_eventos_sincrono():
         for tarefa in _tarefas:
             tarefa()
         _tarefas = list(filter(lambda t: t.status == ESPERANDO, _tarefas))
+
+
+def inicar_loop_de_eventos_assincrono():
+    Thread(target=inicar_loop_de_eventos_sincrono).start()
 
 
 if __name__ == '__main__':
