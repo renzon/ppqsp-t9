@@ -27,6 +27,9 @@ class _Tarefa:
     def deve_executar(self):
         return NotImplementedError('Deve definir critério de execução')
 
+    def __repr__(self):
+        return 'Tarefa(%s)' % self.status
+
 
 class _TarefaIntervalo(_Tarefa):
     def __init__(self, chamavel, intervalo):
