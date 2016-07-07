@@ -12,11 +12,11 @@ def executar_em_intervalo():
 
 
 tarefas = []
+
 tarefas.append(executar_depois(executar_em_intervalo, 5))
 tarefas.append(executar_depois(executar_em_intervalo, 2))
 tarefas.append(executar_aleatoriamente(executar_em_intervalo))
 
-inicar_loop_de_eventos_assincrono()
 
 while any((t.status == ESPERANDO for t in tarefas)):
     print('Mandando bala na CPU')

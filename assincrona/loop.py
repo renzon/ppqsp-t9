@@ -1,3 +1,4 @@
+import time
 from datetime import timedelta, datetime
 from random import randint
 from threading import Thread
@@ -77,11 +78,14 @@ if __name__ == '__main__':
 
     def executar_em_intervalo():
         agora = strftime(fmt)
+        time.sleep(10)
         print('Criada em %s executada em %s' % (inicio, agora))
 
 
+    inicar_loop_de_eventos_sincrono()
     executar_depois(executar_em_intervalo, 5)
     executar_depois(executar_em_intervalo, 2)
     executar_aleatoriamente(executar_em_intervalo)
 
-    inicar_loop_de_eventos_sincrono()
+else:
+    inicar_loop_de_eventos_assincrono()
