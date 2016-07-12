@@ -61,10 +61,14 @@ def executar_aleatoriamente(chamavel):
 
 def inicar_loop_de_eventos_sincrono():
     global _tarefas
-    while _tarefas:
+    while not loop_finalizou():
         for tarefa in _tarefas:
             tarefa()
         _tarefas = list(filter(lambda t: t.status == ESPERANDO, _tarefas))
+
+
+def loop_finalizou():
+    return not bool(_tarefas)
 
 
 def inicar_loop_de_eventos_assincrono():
@@ -87,5 +91,5 @@ if __name__ == '__main__':
     executar_depois(executar_em_intervalo, 2)
     executar_aleatoriamente(executar_em_intervalo)
 
-else:
-    inicar_loop_de_eventos_assincrono()
+# else:
+#     inicar_loop_de_eventos_assincrono()
