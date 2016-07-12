@@ -2,14 +2,14 @@ from threading import Thread
 from time import sleep
 
 
-def esperar():
+def esperar(i):
     sleep(2)
+    print(i)
 
 
 def testar(n):
-    threads = tuple(Thread(target=esperar) for i in range(n))
+    threads = tuple(Thread(target=esperar,args=(i,)) for i in range(n))
     for i, t in enumerate(threads, 1):
-        print(i)
         t.start()
     for t in threads:
         t.join()
